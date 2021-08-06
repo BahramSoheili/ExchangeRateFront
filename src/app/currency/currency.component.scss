@@ -1,0 +1,15 @@
+form {
+    width: 500px;
+    height: 300px;
+    background-color: gray;    
+}
+.result {
+    display: flex;
+    flex-direction: row; 
+    align-content: center; 
+    justify-content: center; 
+    background-color: lightgray;
+    color: blue;
+    width: 200px;
+    height: 20;
+}

@@ -1,0 +1,55 @@
+<form  [formGroup]="form" (ngSubmit)="onSubmit(form)">
+    <section fxLayout="row" fxLayoutGap="50px" fxLayoutAlign="center center">
+        <mat-form-field>
+            <mat-select (ngModelChange)="result = false" #source matNativeControl formControlName="source" required>
+                <div fxLayout="row" fxLayoutAlign="end end">
+                    <button fxLayout="row" fxLayoutAlign="end end" mat-icon-button (click)="source.close()">
+                        <mat-icon color="accent">
+                            close
+                        </mat-icon>
+                    </button>
+                </div>
+                <mat-divider></mat-divider>
+                <mat-option *ngFor="let currency of currenciesList" [value]="currency">{{currency}}</mat-option>
+                <mat-divider></mat-divider>
+            </mat-select>            
+        </mat-form-field> 
+        <span>TO</span>
+        <mat-form-field>
+        <mat-select (ngModelChange)="result = false" #destination matNativeControl formControlName="destination" required>
+            <div fxLayout="row" fxLayoutAlign="end end">
+                <button fxLayout="row" fxLayoutAlign="end end" mat-icon-button (click)="destination.close()">
+                    <mat-icon color="accent">
+                        close
+                    </mat-icon>
+                </button>
+            </div>
+            <mat-divider></mat-divider>
+            <mat-option *ngFor="let currency of currenciesList" [value]="currency">{{currency}}</mat-option>
+            <mat-divider></mat-divider>
+        </mat-select>
+        </mat-form-field>
+    </section>
+    <section fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="space-around center">
+        <mat-form-field>
+            <input type="text" maxlength="12" matInput placeholder="amount" 
+                formControlName="amount">                    
+            <!-- <mat-error *ngIf="form.amount.errors?.required">
+                Number required
+            </mat-error>                -->
+        </mat-form-field> 
+       
+    </section>
+    <section fxLayout="row" fxLayoutAlign="center center">
+        <button type="submit" class="mat-button" mat-raised-button width="100" color="primary"
+            [disabled]="form.invalid">
+            Calculate
+        </button>
+    </section>
+    <br>
+    <br>
+    <section *ngIf= "result" class="result">
+        {{Rate}}        
+    </section>   
+</form>
+
